@@ -1,4 +1,4 @@
-# Unlocking Knowledge and Empowering Students with AI (Chat Scholar)
+# Chat Scholar
 
 ## Problem Statement:
 In today's digital age, students are inundated with information from textbooks, research papers, and online resources. Navigating this vast sea of knowledge and extracting meaningful insights can be overwhelming. Chat Scholar addresses this challenge by providing an AI-powered platform that simplifies academic learning and enhances the writing process.
@@ -32,8 +32,41 @@ In this stage, textual data is converted into numerical embeddings using advance
 Once the processing is done, Chat Scholar uses OpenAI Large Language Model (LLM) to generate the response. Both context and query is passed to the LLM to generate the best possible response.
 
 
-## Product Report:
-Chat Scholar represents a significant step towards leveraging AI to create a more engaging and effective learning experience for students, empowering them to excel in their academic pursuits.
+## USAGE:
+## Prerequisites
+
+- Python 3.10+
+- pip (Python package manager)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git https://github.com/osamaalschame/Scholar-Chat-with-LLM.git
+cd Scholar-Chat-with-LLM
+```
+
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+```
+
+3. Install the required packages:
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up your environment variables by creating a `.env` file:
+```env
+GOOGLE_API_KEY=your_api_key_here
+model_name=model_name
+```
+5. Run the application:
+```bash
+python app.py
+```
+
 
 
 
