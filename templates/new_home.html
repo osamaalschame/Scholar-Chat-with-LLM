@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<style>
+    /* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+header .logo h1 {
+  margin: 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  background: linear-gradient(to right, #4caf50, #81c784);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  background: #fff;
+  color: #4caf50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hero button:hover {
+  background: #f1f1f1;
+}
+
+.features {
+  padding: 50px 20px;
+  background: #f9f9f9;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.feature-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+  color: #4caf50;
+}
+
+.about {
+  padding: 50px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.contact {
+  padding: 50px 20px;
+  background: #4caf50;
+  color: #fff;
+}
+
+.contact form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.contact button {
+  background: #fff;
+  color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>PDF Scholar Chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>PDF Scholar Chat</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Unlock the Power of AI for Academic Research</h2>
+        <p>Interact with academic PDFs like never before. Get insights, summaries, and answers instantly powered by advanced language models.</p>
+        <a href="{{ url_for('pdf_chat') }}"
+                        class=" my-2 bg-gradient-to-bl from-green-300 via-blue-500 to-purple-600 px-8 rounded-2xl py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        PDF Chat</a>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>Features</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h3>Smart Document Interaction</h3>
+            <p>Upload your academic PDFs and ask detailed questions for quick insights.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Summarization</h3>
+            <p>Get concise summaries of lengthy research papers.</p>
+          </div>
+          <div class="feature-item">
+            <h3>References & Citations</h3>
+            <p>Easily extract references and build your citations effortlessly.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Cross-Document Analysis</h3>
+            <p>Compare information across multiple PDFs seamlessly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About PDF Scholar Chat</h2>
+        <p>
+          PDF Scholar Chat is designed to revolutionize academic research by leveraging cutting-edge AI technologies.
+          Whether you’re a student, researcher, or academic professional, our platform empowers you to interact with
+          documents intuitively and efficiently.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 PDF Scholar Chat. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

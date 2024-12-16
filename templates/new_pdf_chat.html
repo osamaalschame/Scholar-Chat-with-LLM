@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF AI Chat Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(15px, -15px); }
+        }
+
+        .upload-zone {
+            background: linear-gradient(to right, #ffffff, #f8f9ff);
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover {
+            background: linear-gradient(to right, #f8f9ff, #ffffff);
+            transform: translateY(-2px);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 overflow-hidden">
+        <div class="blob bg-blue-400/30 w-96 h-96 top-0 -left-48"></div>
+        <div class="blob bg-cyan-400/30 w-96 h-96 bottom-0 right-0"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div class="space-y-10 z-10">
+                    <!-- Logo & Badge -->
+                    <!-- <div class="flex items-center space-x-6">
+                        <img src="/api/placeholder/64/64" alt="Logo" class="w-16 h-16 rounded-2xl shadow-lg">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full 
+                                   bg-gradient-to-r from-blue-500 to-cyan-500 
+                                   text-white text-sm font-medium shadow-lg">
+                            GPT-3.5 LangChain
+                        </span>
+                    </div> -->
+
+                    <!-- Hero Content -->
+                    <div class="space-y-6">
+                        <h1 class="text-5xl lg:text-6xl font-bold leading-tight">
+                            Chat with Your PDFs Using
+                            <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                                AI Technology
+                            </span>
+                        </h1>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Transform the way you interact with documents. Our AI-powered chat interface 
+                            makes document collaboration effortless and intuitive.
+                        </p>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <div class="space-y-6">
+                        <form action="/process" method="post" enctype="multipart/form-data">
+                            <div class="space-y-4">
+                                <!-- File Upload Zone -->
+                                <div class="upload-zone relative group">
+                                    <input type="file" name="pdf_docs" id="pdf_docs" accept=".pdf" multiple required 
+                                           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                                    <div class="relative border-2 border-dashed border-blue-200 rounded-2xl p-8
+                                                transition-all duration-300 group-hover:border-blue-400">
+                                        <div class="flex flex-col items-center justify-center text-center">
+                                            <!-- Upload Icon -->
+                                            <div class="rounded-full bg-blue-50 p-4 mb-4">
+                                                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                                </svg>
+                                            </div>
+                                            <div class="space-y-2">
+                                                <p class="text-lg font-medium text-gray-700">
+                                                    Drop your PDFs here, or <span class="text-blue-500">browse</span>
+                                                </p>
+                                                <p class="text-sm text-gray-500">
+                                                    Support for PDF files only
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Process Button -->
+                                <button type="submit" 
+                                        class="btn-gradient w-full sm:w-auto px-8 py-4 rounded-xl text-white 
+                                               font-semibold shadow-lg shadow-blue-500/30">
+                                    Process Documents
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column - Preview -->
+                <div class="relative lg:block z-10">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="/api/placeholder/800/600" alt="App preview" 
+                                 class="w-full object-cover transform transition-transform duration-500 hover:scale-105">
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <!-- <div class="absolute -top-6 -left-6 glass-effect rounded-xl p-4 shadow-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                                <span class="text-sm font-medium text-gray-700">AI Processing</span>
+                            </div>
+                        </div> -->
+                        
+                        <!-- <div class="absolute -bottom-6 -right-6 glass-effect rounded-xl p-4 shadow-lg">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                                <span class="text-sm font-medium text-gray-700">Real-time Chat</span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial animations
+            gsap.from('.blob', {
+                opacity: 0,
+                scale: 0.8,
+                duration: 2,
+                ease: 'power3.out'
+            });
+
+            gsap.from('h1, p, form, img', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power3.out'
+            });
+
+            // File upload handling
+            const fileInput = document.getElementById('pdf_docs');
+            const uploadZone = document.querySelector('.upload-zone');
+            const submitButton = document.querySelector('button[type="submit"]');
+
+            fileInput.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    submitButton.textContent = `Process ${files.length} ${files.length === 1 ? 'Document' : 'Documents'}`;
+                    gsap.to(submitButton, {
+                        scale: 1.05,
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
+            });
+
+            // Drag and drop handling
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(event => {
+                uploadZone.addEventListener(event, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            ['dragenter', 'dragover'].forEach(event => {
+                uploadZone.addEventListener(event, () => {
+                    uploadZone.classList.add('ring-2', 'ring-blue-400');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(event => {
+                uploadZone.addEventListener(event, () => {
+                    uploadZone.classList.remove('ring-2', 'ring-blue-400');
+                });
+            });
+
+            uploadZone.addEventListener('drop', (e) => {
+                fileInput.files = e.dataTransfer.files;
+                const event = new Event('change');
+                fileInput.dispatchEvent(event);
+            });
+        });
+    </script>
+</body>
+</html>

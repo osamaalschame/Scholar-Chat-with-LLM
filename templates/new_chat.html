@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern chat interface">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Chat Interface</title>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Back Button -->
+        <form action="/" class="mb-8">
+            <button type="submit" 
+                class="group relative inline-flex items-center gap-1.5 px-8 py-3 text-sm font-semibold text-white transition-all rounded-xl 
+                bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-blue-600 
+                active:scale-[0.98] shadow-xl shadow-blue-500/25">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Back
+            </button>
+        </form>
+
+        <!-- Main Content -->
+        <div class="flex flex-col items-center">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800
+                drop-shadow-sm">
+                Chat Interface
+            </h1>
+
+            <!-- Chat Container -->
+            <div class="w-full max-w-3xl bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-500 p-4">
+                    <h2 class="text-white font-semibold">Ask a question</h2>
+                </div>
+
+                <!-- Chat History -->
+                <div class="p-6 space-y-4 min-h-[300px] max-h-[500px] overflow-y-auto">
+                    {% if chat_history %}
+                        {% for message in chat_history %}
+                            <div class="group animate-fade-in">
+                                <div class="p-4 rounded-xl bg-gradient-to-br from-blue-50 to-gray-50 border border-blue-100
+                                    transform transition-all duration-200 hover:scale-[1.01] hover:shadow-md">
+                                    <p class="text-gray-700 font-medium">{{ message.content }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="flex justify-center items-center h-48">
+                            <p class="text-gray-500 font-medium border-2 border-dashed border-gray-300 rounded-lg p-4">
+                                No chat history yet
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Input Form -->
+                <form action="/chat" method="post" class="p-4 bg-gray-50 border-t border-gray-200">
+                    <div class="flex gap-3">
+                        <input type="text" 
+                            name="user_question" 
+                            id="user_question" 
+                            required
+                            class="flex-1 rounded-xl px-4 py-3 bg-white border border-gray-300 focus:border-blue-500 
+                            focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-200"
+                            placeholder="Type your message...">
+                        
+                        <button type="submit" 
+                            class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold
+                            hover:from-blue-500 hover:to-blue-400 transition-all duration-200 shadow-lg shadow-blue-500/25
+                            active:scale-[0.98]">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate messages on load
+        gsap.from(".animate-fade-in", {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+    </script>
+</body>
+</html>
